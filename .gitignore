@@ -1,0 +1,41 @@
+# Directorios de Unreal Engine que no deben ser subidos
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Archivos y directorios de Visual Studio que no deben ser subidos
+.vs/
+*.VC.db
+*.opensdf
+*.sdf
+*.sln
+*.suo
+*.pdb
+*.obj
+*.exe
+*.dll
+*.exp
+*.lib
+*.ncb
+
+# Archivos temporales y de configuración
+*.log
+*.user
+.DS_Store
+Thumbs.db
+
+# Archivos que Git LFS debe rastrear (esto lo veremos después)
+*.uasset
+*.umap
+*.udatasmith
+*.fbx
+*.tga
+*.png
+*.psd
+*.wav
+*.mp4
+*.obj
+*.blend
+*.sbsar
