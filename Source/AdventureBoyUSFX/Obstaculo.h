@@ -17,7 +17,18 @@ public:
 
 protected:
 	//La funcion virtual que las clases hijas anularan
-	virtual void Mover(float DeltaTime);
+	virtual void Moverse(float DeltaTime);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	float velocidad = 100.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	float MaxDistancia = 300.0f;
+
+	FVector UbicacionInicial;
+	FVector UbicacionFinal;
+	bool bMovimientoDerecha = true;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 

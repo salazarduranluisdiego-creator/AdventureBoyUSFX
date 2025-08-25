@@ -3,6 +3,7 @@
 
 #include "Obstaculo.h"
 #include "Components/StaticMeshComponent.h"
+#include "UObject/ConstructorHelpers.h"
 
 // Sets default values
 AObstaculo::AObstaculo()
@@ -28,7 +29,7 @@ AObstaculo::AObstaculo()
 	}
 
 }
-void AObstaculo::Mover(float Deltatime)
+void AObstaculo::Moverse(float Deltatime)
 {
 	// Implement movement logic here if needed
 	// This function can be overridden by derived classes
@@ -44,6 +45,8 @@ void AObstaculo::BeginPlay()
 void AObstaculo::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	Moverse(DeltaTime);
 
 }
 

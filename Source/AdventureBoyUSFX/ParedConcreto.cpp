@@ -2,6 +2,7 @@
 
 
 #include "ParedConcreto.h"
+#include "UObject/ConstructorHelpers.h"
 #include "Components/StaticMeshComponent.h"
 
 // Sets default values
@@ -31,6 +32,11 @@ void AParedConcreto::BeginPlay()
 void AParedConcreto::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	Moverse(DeltaTime);
 
 }
 
+void AParedConcreto::Moverse(float DeltaTime)
+{
+
+}

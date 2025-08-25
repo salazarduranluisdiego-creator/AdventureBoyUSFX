@@ -26,8 +26,7 @@ void AParedLadrillo::BeginPlay()
 	Super::BeginPlay();
 	
 	UbicacionInicial = GetActorLocation();	
-	UbicacionFinal = UbicacionInicial;
-	UbicacionFinal.Y += MaxDistancia;
+
 }
 
 // Called every frame
@@ -35,13 +34,18 @@ void AParedLadrillo::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	Moverse(DeltaTime);
+}
+
+void AParedLadrillo::Moverse(float DeltaTime)
+{
 	FVector UbicacionActual = GetActorLocation();
 
-	float DistanciaRecorrida = FVector::Dist(GetActorLocation(), UbicacionInicial);
+	float DistanciaRecorrida = FVector::Dist(UbicacionActual, UbicacionInicial);
 
 	if (bMovimientoDerecha)
 	{
-		UbicacionActual.Y += Velocidad * DeltaTime;
+		UbicacionActual.Y += velocidad * DeltaTime;
 		if (DistanciaRecorrida >= MaxDistancia)
 		{
 			bMovimientoDerecha = false;
@@ -49,12 +53,13 @@ void AParedLadrillo::Tick(float DeltaTime)
 	}
 	else
 	{
-		UbicacionActual.Y -= Velocidad * DeltaTime;
-		if (DistanciaRecorrida <=0.1f)
+		UbicacionActual.Y -= velocidad * DeltaTime;
+		if (DistanciaRecorrida <= 10.0f)
 		{
 			bMovimientoDerecha = true;
 		}
 	}
+
 	SetActorLocation(UbicacionActual);
 }
 

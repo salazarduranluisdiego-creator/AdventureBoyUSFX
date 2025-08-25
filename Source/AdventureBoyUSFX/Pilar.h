@@ -3,27 +3,27 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Obstaculo.h"
-#include "Pared.generated.h"
-
+#include "Obstaculo.h" // Ahora hereda de AObstaculo
+#include "Pilar.generated.h"
 
 UCLASS()
-class ADVENTUREBOYUSFX_API APared : public AObstaculo
+class ADVENTUREBOYUSFX_API APilar : public AObstaculo
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
-	APared();
+	APilar();
 
 protected:
+	// La malla del pilar, que será común para todos los pilares
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Malla")
+	UStaticMeshComponent* MallaPilar;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh")
-	UStaticMeshComponent* MallaPared;
 };

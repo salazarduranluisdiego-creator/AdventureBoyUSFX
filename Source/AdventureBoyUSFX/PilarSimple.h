@@ -3,29 +3,26 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Pared.h"
-#include "ParedLadrillo.generated.h"
+#include "Pilar.h" // Incluye la clase padre
+#include "PilarSimple.generated.h"
 
 UCLASS()
-class ADVENTUREBOYUSFX_API AParedLadrillo : public APared
+class ADVENTUREBOYUSFX_API APilarSimple : public APilar
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
-	AParedLadrillo();
+	APilarSimple();
 
 protected:
-	//Nueva variable para la amlla especifica de ParedLaadrillo
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh")
-	class UStaticMeshComponent* MallaParedLadrillo;	
-
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// Sobrescribe el método Moverse de la clase padre (AObstaculo)
 	virtual void Moverse(float DeltaTime) override;
 };
