@@ -10,22 +10,16 @@ UCLASS()
 class ADVENTUREBOYUSFX_API AParedConcreto : public APared
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
+
+public:
 	AParedConcreto();
 
 protected:
-	//Declaracion de la malla especifica para la pared de concreto
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category ="Mesh")
-	class UStaticMeshComponent* MallaParedConcreto;
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
+public:
 	virtual void Tick(float DeltaTime) override;
 
-	virtual void Moverse(float DeltaTime) override;	
+	virtual void Moverse(float DeltaTime) override;
 
 };

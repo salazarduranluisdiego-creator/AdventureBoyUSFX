@@ -10,20 +10,19 @@ UCLASS()
 class ADVENTUREBOYUSFX_API AParedLadrillo : public APared
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AParedLadrillo();
 
 protected:
-	//Nueva variable para la amlla especifica de ParedLaadrillo
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh")
-	class UStaticMeshComponent* MallaParedLadrillo;	
+	// La malla se hereda de la clase padre (Pared, que a su vez hereda de Obstaculo).
+	// Ya no se necesita una nueva variable de malla aquí.
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

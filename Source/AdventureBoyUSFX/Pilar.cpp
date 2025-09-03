@@ -7,8 +7,25 @@
 // Sets default values
 APilar::APilar()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Permite que el actor sea "tickeable"
 	PrimaryActorTick.bCanEverTick = true;
+
+	// Busca la malla del cilindro en el contenido del motor.
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> objetoMallaPilar(TEXT("StaticMesh'/Engine/BasicShapes/Cylinder.Cylinder'"));
+
+	// Si la malla se carga correctamente, la asigna al componente MallaObstaculo que hereda
+	if (objetoMallaPilar.Succeeded())
+	{
+		// ASIGNA LA MALLA AL COMPONENTE HEREDADO (MallaObstaculo)
+		MallaObstaculo->SetStaticMesh(objetoMallaPilar.Object);
+		// Opcional: Escala el pilar para que se vea más alto
+		MallaObstaculo->SetWorldScale3D(FVector(0.5f, 0.5f, 2.0f));
+		UE_LOG(LogTemp, Warning, TEXT("Malla de Pilar cargada correctamente"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("No se pudo cargar la malla en Pilar"));
+	}
 }
 
 // Called when the game starts or when spawned

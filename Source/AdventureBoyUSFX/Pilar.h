@@ -16,9 +16,9 @@ public:
 	APilar();
 
 protected:
-	// La malla del pilar, que será común para todos los pilares
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Malla")
-	UStaticMeshComponent* MallaPilar;
+	// No se necesita MallaPilar, se hereda MallaObstaculo de la clase padre
+	// UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Malla")
+	// UStaticMeshComponent* MallaPilar;
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

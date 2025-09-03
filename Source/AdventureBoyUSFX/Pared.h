@@ -11,19 +11,18 @@ UCLASS()
 class ADVENTUREBOYUSFX_API APared : public AObstaculo
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	APared();
 
 protected:
-	// Called when the game starts or when spawned
+	// La malla y los metodos BeginPlay y Tick se heredan de AObstaculo.
 	virtual void BeginPlay() override;
 
-public:	
+	virtual void Moverse(float DeltaTime) override;
+
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh")
-	UStaticMeshComponent* MallaPared;
 };

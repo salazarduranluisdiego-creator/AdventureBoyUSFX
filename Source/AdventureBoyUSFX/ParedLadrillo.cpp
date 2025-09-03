@@ -10,13 +10,11 @@ AParedLadrillo::AParedLadrillo()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	MallaParedLadrillo = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MallaParedLadrillo"));	
-	RootComponent = MallaParedLadrillo;	
 
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> objetoMallaParedLadrillo(TEXT("StaticMesh'/Game/ModelosImportados/Castle_wall_pCube1.Castle_wall_pCube1'"));
 	if (objetoMallaParedLadrillo.Succeeded())
 	{
-		MallaParedLadrillo->SetStaticMesh(objetoMallaParedLadrillo.Object);
+		MallaObstaculo->SetStaticMesh(objetoMallaParedLadrillo.Object);
 	}
 }
 
