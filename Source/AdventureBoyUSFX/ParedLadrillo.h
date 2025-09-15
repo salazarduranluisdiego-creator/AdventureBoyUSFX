@@ -15,16 +15,35 @@ public:
 	// Sets default values for this actor's properties
 	AParedLadrillo();
 
-protected:
-	// La malla se hereda de la clase padre (Pared, que a su vez hereda de Obstaculo).
-	// Ya no se necesita una nueva variable de malla aquí.
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	FVector PosicionInicialPared;
 
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	float VelocidadMovimientoPared;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	float LimiteMovimientoPared;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	bool bMoviendosePared;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	bool bMovimientoVerticalPared = false;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	bool bMovimientoYPared = false;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	bool bMovimientoDiagonalXYPared = false;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	bool bMovimientoDiagonalXZPared = false;
+
+protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	virtual void Moverse(float DeltaTime) override;
 };

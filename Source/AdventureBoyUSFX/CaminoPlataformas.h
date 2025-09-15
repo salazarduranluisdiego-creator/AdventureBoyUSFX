@@ -25,14 +25,26 @@ protected:
 
 	// Variables que controlan la generacion
 	UPROPERTY(EditAnywhere, Category = "Generacion")
-	int32 NumeroDePlataformas;
-
-	UPROPERTY(EditAnywhere, Category = "Generacion")
 	float SeparacionEntrePlataformas;
+
+	// Un TMap para controlar el numero de plataformas por cada nivel (piso).
+	UPROPERTY(EditAnywhere, Category = "Generacion")
+	TMap<int32, int32> ComponentesPorPiso;
+
+	UPROPERTY()
+	TMap<int32, APlataforma*> MapaDePlataformas;
+	UPROPERTY()
+	int32 ContadorMovimiento;
 
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	void SeleccionarPlataformaManualmente(int32 CodigoPlataforma, int32 AccionPlataforma);
+
+	void MoverPlataformaAleatoria();
+
+	void MoverPlataforma203();
 
 private:
 	// Función para generar las plataformas

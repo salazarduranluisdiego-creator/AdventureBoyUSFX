@@ -17,6 +17,33 @@ public:
 	// Sets default values for this actor's properties
 	APlataforma();
 
+	// Variable para la malla estatica de la plataforma
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Malla")
+	UStaticMeshComponent* MallaPlataforma;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	FVector PosicionInicial;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	float VelocidadMovimiento;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	float LimiteMovimiento;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	bool bMoviendose;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+		bool bMovimientoVertical=false;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+		bool bMovimientoY=false;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	bool bMovimientoDiagonalXY=false;
+
+	UPROPERTY(EditAnywhere, Category = "Movimiento")
+	bool bMovimientoDiagonalXZ=false;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -33,8 +60,4 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Dimensiones")
 	float ProfundidadPlataforma(float Profundidad);
 
-protected:
-	// Variable para la malla estatica de la plataforma
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Malla")
-	UStaticMeshComponent* MallaPlataforma;
 };

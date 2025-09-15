@@ -16,6 +16,14 @@ AParedLadrillo::AParedLadrillo()
 	{
 		MallaObstaculo->SetStaticMesh(objetoMallaParedLadrillo.Object);
 	}
+
+	VelocidadMovimientoPared = 100.0f; // Velocidad del movimiento
+	LimiteMovimientoPared = 200.0f;   // Distancia total del movimiento
+	bMoviendosePared = false;         // Bandera para activar el movimiento
+	bMovimientoYPared = false;
+	bMovimientoVerticalPared = false;
+	bMovimientoDiagonalXYPared = false;
+	bMovimientoDiagonalXZPared = false;
 }
 
 // Called when the game starts or when spawned
@@ -32,32 +40,74 @@ void AParedLadrillo::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	Moverse(DeltaTime);
-}
-
-void AParedLadrillo::Moverse(float DeltaTime)
-{
-	FVector UbicacionActual = GetActorLocation();
-
-	float DistanciaRecorrida = FVector::Dist(UbicacionActual, UbicacionInicial);
-
-	if (bMovimientoDerecha)
+	if (bMoviendosePared)
 	{
-		UbicacionActual.Y += velocidad * DeltaTime;
-		if (DistanciaRecorrida >= MaxDistancia)
+		FVector CurrentLocation = GetActorLocation();
+
+		// LÓGICA DE MOVIMIENTO VERTICAL
+		if (bMovimientoVerticalPared)
 		{
-			bMovimientoDerecha = false;
+			CurrentLocation.Z += VelocidadMovimientoPared * DeltaTime;
+			SetActorLocation(CurrentLocation);
+
+			// Comprueba si la plataforma ha alcanzado el límite de movimiento
+			if (FVector::Distance(PosicionInicialPared, CurrentLocation) >= LimiteMovimientoPared)
+			{
+				// Invierte la dirección del movimiento
+				VelocidadMovimientoPared *= -1;	
+				// Reinicia la posición inicial para el nuevo tramo del movimiento
+				PosicionInicialPared = GetActorLocation();
+			}
+		}
+		// LÓGICA DE MOVIMIENTO Y
+		else if (bMovimientoYPared)
+		{
+			CurrentLocation.Y += VelocidadMovimientoPared * DeltaTime;
+			SetActorLocation(CurrentLocation); // Mueve la plataforma
+
+			if (FVector::Distance(PosicionInicialPared, CurrentLocation) >= LimiteMovimientoPared)
+			{
+				VelocidadMovimientoPared *= -1;
+				PosicionInicialPared = GetActorLocation();
+			}
+		}
+		else if (bMovimientoDiagonalXYPared)
+		{
+			CurrentLocation.X += VelocidadMovimientoPared * DeltaTime;
+			CurrentLocation.Y += VelocidadMovimientoPared * DeltaTime;
+			SetActorLocation(CurrentLocation);
+			if (FVector::Distance(PosicionInicialPared, CurrentLocation) >= LimiteMovimientoPared)
+			{
+				VelocidadMovimientoPared *= -1;
+				PosicionInicialPared = GetActorLocation();
+			}
+		}
+		else if (bMovimientoDiagonalXZPared)
+		{
+			CurrentLocation.X += VelocidadMovimientoPared * DeltaTime;
+			CurrentLocation.Z += VelocidadMovimientoPared * DeltaTime;
+			SetActorLocation(CurrentLocation);
+			if (FVector::Distance(PosicionInicialPared, CurrentLocation) >= LimiteMovimientoPared)
+			{
+				VelocidadMovimientoPared *= -1;
+				PosicionInicialPared = GetActorLocation();
+			}
+		}
+		else // Lógica de movimiento horizontal
+		{
+			CurrentLocation.X += VelocidadMovimientoPared * DeltaTime;
+			SetActorLocation(CurrentLocation);
+
+			// Comprueba si la plataforma ha alcanzado el límite de movimiento
+			if (FVector::Distance(PosicionInicialPared, CurrentLocation) >= LimiteMovimientoPared)
+			{
+				// Invierte la dirección del movimiento
+				VelocidadMovimientoPared *= -1;
+				// Reinicia la posición inicial para el nuevo tramo del movimiento
+				PosicionInicialPared = GetActorLocation();
+			}
 		}
 	}
-	else
-	{
-		UbicacionActual.Y -= velocidad * DeltaTime;
-		if (DistanciaRecorrida <= 10.0f)
-		{
-			bMovimientoDerecha = true;
-		}
-	}
-
-	SetActorLocation(UbicacionActual);
 }
+
 
